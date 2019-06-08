@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         return response([
             'status' => 'success',
-            'data' => $user
+            'data' => $user,
         ], 200);
     }
 
@@ -46,12 +46,12 @@ class AuthController extends Controller
             return response([
                 'status' => 'error',
                 'error' => 'invalid.credentials',
-                'msg' => 'Invalid Credentials.'
+                'msg' => 'Invalid Credentials',
             ], 400);
         }
 
         return response([
-            'status' => 'success'
+            'status' => 'success',
         ])
             ->header('Authorization', $token)
             ->header('Access-Control-Expose-Headers', 'Authorization');
@@ -68,7 +68,7 @@ class AuthController extends Controller
 
         return response([
             'status' => 'success',
-            'msg' => 'Logged out Successfully.'
+            'msg' => 'Logged out Successfully',
         ], 200);
     }
 
@@ -83,7 +83,14 @@ class AuthController extends Controller
 
         return response([
             'status' => 'success',
-            'data' => $user
+            'data' => $user,
+        ]);
+    }
+
+    public function refresh()
+    {
+        return response([
+            'status' => 'success'
         ]);
     }
 }
