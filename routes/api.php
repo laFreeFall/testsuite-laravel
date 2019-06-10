@@ -28,3 +28,16 @@ Route::group(['middleware' => 'jwt.refresh'], function(){
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['namespace' => 'Api'], function () {
+    Route::group(['prefix' => 'quizzes', 'namespace' => 'Quiz'], function () {
+        Route::post('/', 'QuizzesController@store');
+
+        Route::get('categories', 'CategoriesController@index');
+
+        Route::group(['prefix' => 'questions', 'namespace' => 'Questions'], function () {
+            Route::get('types', 'TypesController@index');
+        });
+    });
+
+});
